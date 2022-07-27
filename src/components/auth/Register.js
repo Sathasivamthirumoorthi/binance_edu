@@ -21,9 +21,29 @@ import {
   } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import { ethers } from 'ethers';
+import UserInfoArtifact from './abi/user.json'
+import contractAddress from './instance';
+
 
 
 export default function Register(props){
+
+  const [count,setCount] = useState(0) 
+
+  const contractInstance = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(contractAddress,UserInfoArtifact.abi,signer);
+
+    contract.register(2,formik.values.full_name,formik.values.email,formik.values.education,formik.values.instution);
+    console.log("Successfully done");
+  }
+
+  // contractInstance();
+
+
+
     const formik = useFormik({
       initialValues: {
         full_name: '',
@@ -232,6 +252,7 @@ export default function Register(props){
                 size="large"
                 type="submit"
                 variant="contained"
+                onClick={async ()=>{await contractInstance()}}
               >
                 Sign Up Now
               </Button>
