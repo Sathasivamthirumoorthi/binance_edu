@@ -44,11 +44,12 @@ export default function DashBoard() {
      direction="row"
      alignItems="center"
      justifyContent="center"
-     style={{ minHeight: '100vh' }}
+     style={{ minHeight: '80vh' }}
+     item xs={12} sm={12} md={12}
     >
       {
         states.map((item)=>( 
-        <Grid item xs='auto'  > 
+        <Grid item xs='auto' marginTop={2} > 
         <Link to={`/dashboard/courses/` + item.name } style={{textDecoration:"none"}}>
         <Course course={item} key = {item.id} />
         </Link>        

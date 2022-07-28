@@ -19,6 +19,13 @@ import CourseVedio from "./components/CourseVedio"
 import { useTheme } from '@mui/material/styles';
 import { InsertEmoticonSharp } from '@mui/icons-material';
 import Certificate from "./components/Certificate"
+import Quiz from "./components/Quiz"
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 
 // const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad','hello'];
@@ -33,25 +40,12 @@ const steps = [
                 and geographical locations you want your ads to show on, and more.`,
     },
     {
-        id : 2,
-        text : 'mining2',
-      label: '/vedio2.mp4',
-      description:
-        'An ad group contains one or more ads which target a shared set of keywords.',
-    },
-    {
-        id : 3,
-        text : 'mining3',
-      label: '/vedio1.mp4',
-      description: `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`,
-    },
+      id : 2,
+    }
   ];
   
 
-export default function HorizontalLinearStepper() {
+export default function ViewCourse() {
      
   const theme = useTheme();
 //   const [activeStep, setActiveStep] = React.useState(0);
@@ -59,9 +53,17 @@ export default function HorizontalLinearStepper() {
     
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  const [verifed,setVerified] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
   // const [skipped, setSkipped] = React.useState(new Set());
 
+  const handleClose = () => {
+    
+    setOpen(false);
+    
+  };
   
+
   const isStepOptional = (step) => {
     return step === 1;
   };
@@ -76,9 +78,21 @@ export default function HorizontalLinearStepper() {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
     }
+    if(activeStep <steps.length - 1 ){
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
     setSkipped(newSkipped);
+    
+    if(activeStep === steps.length - 1){
+      if(verifed){
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      }
+      else{
+        setOpen(true)
+      }
+    }
+
   };
 
   const handleBack = () => {
@@ -104,6 +118,11 @@ export default function HorizontalLinearStepper() {
     setActiveStep(0);
   };
 
+  const getVerified = (values) =>{
+    console.log(values)
+    setVerified(true)
+  }
+
   return (
     <Grid
     container
@@ -112,10 +131,33 @@ export default function HorizontalLinearStepper() {
     align="center"
     alignItems="center"
     justifyContent="center"
+    zIndex={-2}
     >
     <Card sx={{ minWidth: 500}}>
         
-    
+     <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {`Please attend the test`}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Sorry, You should finish the test to earn certificate
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+  
+          <Button onClick={handleClose} autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
     <CardContent >
 
     <Grid style={{ margin: 20 }}>
@@ -125,10 +167,13 @@ export default function HorizontalLinearStepper() {
       </Grid>
 
       <Divider style={{ margin: 20 }} />
-
-      { activeStep < maxSteps ?
-      <CourseVedio key={steps[activeStep].id} video = {steps[activeStep].label}/> : <Certificate/>
-      }
+      <div style={{zIndex:2}}>
+        {
+          activeStep < maxSteps-1 ?
+            <CourseVedio key={steps[activeStep].id} video = {steps[activeStep].label}/>  :  (<Quiz getVerified = {getVerified}/>)
+        }
+     
+      </div>
     <Box sx={{ width: '100%' ,marginTop:'20px'}}>
       <Stepper activeStep={activeStep}>
         {steps.map((item, index) => {
@@ -173,12 +218,6 @@ export default function HorizontalLinearStepper() {
               Back
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
-            {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
-              </Button>
-            )}
-
             <Button onClick={handleNext}>
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
             </Button>

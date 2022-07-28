@@ -17,6 +17,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AdbIcon from '@mui/icons-material/Adb';
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 // auth components
 import Register from './components/auth/Register';
@@ -49,6 +51,19 @@ function App() {
   const [user, loading, error] = useAuthState(auth);
   
   const [open, setOpen] = useState(false);
+
+  const particlesInit = async (main) => {
+    console.log(main);
+
+    // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    await loadFull(main);
+  };
+
+  const particlesLoaded = (container) => {
+    console.log(container);
+  };  
 
   const handleClose = () => {
   
