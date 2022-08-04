@@ -19,7 +19,8 @@ import IconButton from '@mui/material/IconButton';
 import AdbIcon from '@mui/icons-material/Adb';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-
+import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
+import { Container } from '@mui/material';
 // auth components
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -30,10 +31,11 @@ import { AuthContext } from "./AuthProvider";
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./App.css"
-import ViewCourse from './ViewCourse';
+import ViewCourse from './components/ViewCourse';
 import Error from './components/Error';
+import Games from "./components/games/Games"
 import "./App.css"
-import { Container } from '@mui/material';
+import Certificate from "./components/Certificate"
 
 
 function App() {
@@ -120,7 +122,6 @@ function App() {
   const getloginData = (values) =>{
     function onRegister() {
       signInWithEmailAndPassword(auth, values.email, values.password).then((res)=>{
-        console.log("dsadsadasdsadsadsadasdsa")
         navigate("/dashboard")
       }).catch((error) =>{
         setOpen(true);
@@ -131,6 +132,13 @@ function App() {
      
     }
     onRegister();
+  
+
+  
+  }
+
+  const goHome = () => {
+    navigate('/dashboard')
   }
 
 
@@ -138,23 +146,30 @@ function App() {
   return (
     
       <div className="App">
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{height:"50%",width:"100%"}}>
-          <Container > 
+      <video className='videoTag' autoPlay loop muted>
+        <source src="/background.mp4" type='video/mp4' />
+      </video>
+    
+      <Box sx={{ flexGrow: 1}}>
+    
+        <AppBar  position="static" sx={{height:"50%",width:"100%",backgroundColor:"transparent"}}>
+        <div className="header">
+          <Container lg> 
         <Toolbar variant="dense">
-          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 1 }} onClick={goHome}>
+          <CurrencyBitcoinIcon sx={{ display: { xs: 'none', md: 'flex',fontSize:"30px" }, mr: 1 }} />
           </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
-            Crypto.com
+          <Typography variant="h6" color="inherit" sx={{fontWeight:700,letterSpacing:2}} component="div">
+            CRYPTO CASTLE
           </Typography>
         </Toolbar>
         </Container>
+        </div>
       </AppBar>
+      
       </Box>
-        {/* {
-          metamaskConnectionStatus ? <Register/> : <Metamask getConnectedStatus = {getConnectedStatus}/>
-        } */}
+     
+
        <Dialog
         open={open}
         onClose={handleClose}
@@ -162,7 +177,7 @@ function App() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          {"Incorrect Password"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -184,18 +199,12 @@ function App() {
                   user ? <>
                    <Route exact path='/dashboard' element={<DashBoard />}></Route>   
                   <Route exact path='/dashboard/courses/:name' element={<ViewCourse />}></Route>  
-                  
+                  <Route exact path='/dashboard/games/:name' element={<Games />}></Route>  
+                  <Route exact path='/dashboard/certificate' element={<Certificate />}></Route>  
                   </> : 
                 <Route exact path='/login' element={<Login getloginData={getloginData} />}></Route>   
 
                 }             
-
-              <Route path="/will-match" element={<Error/>}>
-            
-              </Route>
-              <Route path="*" element={<Error/>}>
-                 
-              </Route>
                                    
           </Routes>
 

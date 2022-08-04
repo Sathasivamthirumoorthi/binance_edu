@@ -1,18 +1,14 @@
-import { CardMedia,Container } from "@mui/material";
-import { height } from "@mui/system";
+import React from 'react';
 
-export default function CourseVedio(props){
-    return(
-        <Container maxWidth="lg">
-             <CardMedia
-                 sx={{
-                    width:"100%",
-                    maxHeight:"600px"
-                }}
-                component="img"
-                image="/certificate.webp"
-                alt="certificate"
-            />
-        </Container>
+
+// Create Document Component
+ const Certificate = () => {
+  return(
+ <iframe className='certificate' src="https://drive.google.com/file/d/1c6hAajnB0h3CTmU3UJc7XaZdW8iLVraV/preview"  frameBorder="0"></iframe>
     )
-}
+
+ }
+
+
+
+export default Certificate

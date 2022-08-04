@@ -13,18 +13,21 @@ import {
   } from '@mui/material/styles';
 import "./Course.css"
 
+
 export default function Course(props){
 
+
     return(
-        <Box sx={{maxWidth:500}} className="card">
-            <Card sx={{ width: "300px" }}>
-                <CardActionArea>
-        
-                    <CardContent sx={{ width: "200px" }}>
-                    <Typography gutterBottom variant="h5" component="div">
+       
+        <Box sx={{maxWidth:500}} >
+          
+            <div className='course'>
+                <CardActionArea >
+                    <CardContent sx={{ width: "300px"}}>
+                    <Typography gutterBottom variant="h5" component="div" sx={{fontWeight:900,letterSpacing:2,color:"#FF38FF"}}>
                         {props.course.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography  variant="h6" sx={{letterSpacing:2}} color="#fff">
                        {props.course.description}
                     </Typography>
                     </CardContent>
@@ -32,11 +35,13 @@ export default function Course(props){
                     autoplay
                     loop
                     src={props.course.label}
-                    style={{ height: '300px', width: '300px' }}
+                    style={{ height: '300px', width: '300px'}}
                     >
                     </Player>
                 </CardActionArea>
-            </Card>
+                </div>
+    
         </Box>
+       
     )
 }

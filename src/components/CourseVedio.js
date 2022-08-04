@@ -4,17 +4,13 @@ import { height } from "@mui/system";
 
 export default function CourseVedio(props){
     return(
-        <Container maxWidth="lg">
-            <CardMedia
-            component="video"
-            sx={{
-                width:"100%",
-                maxHeight:"600px",
-                zIndex: 2
-            }}
-            image={props.video}
-            controls
-            />
+        <Container maxWidth="lg"   sx={{
+            width:"100vh",
+            zIndex: 2
+        }}>
+
+        <iframe  src={props.vedio} width="100%" height="600" allow="autoplay"></iframe>
+
         </Container>
     )
 }

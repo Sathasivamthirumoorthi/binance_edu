@@ -33,9 +33,25 @@ export default function Metamask(props) {
       }
       sethaveMetamask(true);
 
-      if (ethereum) {
-        var provider = new ethers.providers.Web3Provider(ethereum);
-      }
+  
+      
+    function handleAccountsChanged(accounts) {
+      console.log(accounts);
+
+      // if (accounts.length === 0) {
+      //   $('#connection-status').innerText = "You're not connected to MetaMask";
+      //   $('#connect-btn').disabled = false;
+      // } else if (accounts[0] !== currentAccount) {
+      //   currentAccount = accounts[0];
+      //   $('#connection-status').innerText = `Address: ${currentAccount}`;
+      //   $('#connect-btn').disabled = true;
+      // }
+    }
+    if (ethereum) {
+      var provider = new ethers.providers.Web3Provider(ethereum);
+      ethereum.request({ method: 'eth_accounts' }).then(handleAccountsChanged).catch(console.error);
+    }
+
       const isMetaMaskConnected = async () => {
         const accounts = await provider.listAccounts();
         return accounts.length > 0;
@@ -80,7 +96,9 @@ export default function Metamask(props) {
       }
       const accounts = await ethereum.request({
         method: 'eth_requestAccounts',
-      });
+      })
+
+      console.log(accounts[0])
 
       let balance = await provider.getBalance(accounts[0]);
       let bal = ethers.utils.formatEther(balance);
@@ -103,7 +121,7 @@ export default function Metamask(props) {
     }
   };
 
-  
+  console.log(accountAddress)
   
 
 

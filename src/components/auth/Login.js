@@ -58,8 +58,8 @@ export default function Login(props){
       direction="row"
       alignItems="center"
       justifyContent="space-evenly"
-      style={{ minHeight: '100vh' }}
-      
+      style={{ minHeight: '100vh', }}
+     
       >
       <Grid item xs={12} sm={8} md={4} justifyContent="center">
         
@@ -70,30 +70,30 @@ export default function Login(props){
 
       </Grid>
 
-      <Grid item xs={12} sm={8} md={4} justifyContent="center">
-         <Container>
-         <Card>
-         <CardContent>
+      <Grid item xs={12} sm={8} md={4} justifyContent="center"  >
+         <Container >
+         <Card className="login" sx={{backgroundColor: "transparent"}}>
+         <CardContent style={{color: 'white'}} >
          <form onSubmit={formik.handleSubmit}>
 
                
          
-            <Box sx={{ my: 5 }}>
+            <Box sx={{ my: 5 }} >
               <Typography
-                color="textPrimary"
+                color="#fff"
                 variant="h4"
               >
                 Login 
               </Typography>
               <Typography
-                color="textSecondary"
+               color="#fff"
                 gutterBottom
                 variant="body2"
               >
                 Use your email to login
               </Typography>
             </Box>
-            <Divider />
+            <Divider sx={{backgroundColor:"#fff"}} />
             <Grid
               spacing={12}
             >
@@ -111,6 +111,8 @@ export default function Login(props){
               type="email"
               value={formik.values.email}
               variant="outlined"
+              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
+              InputLabelProps={{style : {color : 'white'} }}
             />
 
             <TextField
@@ -125,6 +127,8 @@ export default function Login(props){
               type="password"
               value={formik.values.password}
               variant="outlined"
+              sx={{ input: { color: '#fff' } , }}
+              InputLabelProps={{style : {color : 'white'} }}
             />
             <Box
               sx={{
@@ -151,7 +155,7 @@ export default function Login(props){
 
             </Grid>
             <Typography
-              color="textSecondary"
+              color="#fff"
               variant="body2"
             >
               Don't Have an account?

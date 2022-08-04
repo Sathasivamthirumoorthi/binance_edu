@@ -18,6 +18,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+
+
 const Quiz_Set = [
     {
         queno:"que_1",
@@ -92,7 +94,6 @@ export default function Quiz(props) {
     const [count, setCount] = React.useState(0)
     const [open, setOpen] = React.useState(false);
 
-
     const handleClose = () => {
     
       // setOpen(false);
@@ -101,19 +102,21 @@ export default function Quiz(props) {
       
     };
     
-    let total = Quiz_Set.length
+    let total = props.questions.length
     const handleNext = () => {
       setChecked1(false)
       setChecked2(false)
       setChecked3(false)
       setChecked4(false)
-      Quiz_Set.map(item =>{ 
-        if(ans === item.ans){
-          console.log("dsad")
-          setCount(count + 1)
+      props.questions.map(item =>{ 
+        // if(ans === item.ans){
+        //   console.log("dsad")
+        //   setCount(count + 1)
+          
+        // }
+        // console.log(item.ans)
+        console.log(item.ans)
 
-        }
-        console.log(item.ans,ans)
 
       })
       
@@ -121,7 +124,7 @@ export default function Quiz(props) {
    
     };
 
-    console.log("count ------ ",count)
+    // console.log("count ------ ",count)
   
     const handleBack = () => {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -132,16 +135,15 @@ export default function Quiz(props) {
     };
 
     const selectOption = (e) =>{
-        console.log(e.target.value)
-        const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+      
     }
 
     const handleSubmit = () =>{
       console.log("count",count)
-      if(count < Quiz_Set.length-1){
+      if(count < props.questions.length-1){
         setOpen(true)
       }
-      if(count <= Quiz_Set.length){
+      if(count <= props.questions.length){
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setCount(0)
         props.getVerified(true)
@@ -210,19 +212,22 @@ export default function Quiz(props) {
 
         
         <Stepper activeStep={activeStep} orientation="vertical">
-          {Quiz_Set.map((step, index) => (
+          {props.questions.map((step, index) => (
             <Step key={step.label}>
               <StepLabel
                 optional={
-                  index === Quiz_Set.length-1 ? (
-                    <Typography variant="caption">Last step</Typography>
+                  index === props.questions.length-1 ? (
+                    <Typography variant="caption" sx={{fontWeight:900,letterSpacing:2,color:"#FF38FF"}} >Last step</Typography>
                   ) : null
                 }
+                sx={{fontWeight:900,letterSpacing:2,color:"#FF38FF"}}
               >
+                <Typography sx={{fontWeight:900,letterSpacing:2,color:"#fff"}}>
                 {step.queno}
+                </Typography>
               </StepLabel>
               <StepContent>
-                <Typography>{step.que}</Typography>
+                <Typography sx={{fontWeight:900,letterSpacing:2,color:"#fff"}} >{step.que}</Typography>
              
                         <List sx={style} component="nav" aria-label="mailbox folders">
                         <ListItem button >
@@ -248,17 +253,19 @@ export default function Quiz(props) {
                 <Box sx={{ mb: 2 }}>
                   <div>
                     {
-                      index === Quiz_Set.length - 1 ?  <Button
+                      index === props.questions.length - 1 ?  
+                      <Button
                       variant="contained"
                       onClick={handleSubmit}
-                      sx={{ mt: 1, mr: 1 }}
+                      sx={{ mt: 1, mr: 1,fontWeight:900,letterSpacing:2,color:"#fff",backgroundColor:"#FF38FF"}}
                     >
                       {'Submit'}
                     </Button> : 
                      <Button
                      variant="contained"
                      onClick={handleNext}
-                     sx={{ mt: 1, mr: 1 }}
+                     sx={{ mt: 1, mr: 1,fontWeight:900,letterSpacing:2,color:"#fff",backgroundColor:"#FF38FF" }}
+
                    >
                      {'Continue'}
                    </Button>
@@ -267,7 +274,8 @@ export default function Quiz(props) {
                     <Button
                       disabled={index === 0}
                       onClick={handleBack}
-                      sx={{ mt: 1, mr: 1 }}
+                      sx={{ mt: 1, mr: 1,fontWeight:900,letterSpacing:2,color:"#fff",backgroundColor:"#FF38FF" }}
+                   
                     >
                       Back
                     </Button>
@@ -277,10 +285,10 @@ export default function Quiz(props) {
             </Step>
           ))}
         </Stepper>
-        {activeStep === Quiz_Set.length && (
-          <Paper square elevation={0} sx={{ p: 3 }}>
-            <Typography>You successfully completed the test,click finish,to recieve your certificate</Typography>
-            <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+        {activeStep === props.questions.length && (
+          <Paper square elevation={0} sx={{ p: 3 , backgroundColor:"transparent"}} >
+            <Typography sx={{fontWeight:900,letterSpacing:2,color:"#fff"}} >You successfully completed the test,click finish,to recieve your certificate</Typography>
+            <Button onClick={handleReset} sx={{ mt: 1, mr: 1,fontWeight:900,letterSpacing:2,color:"#fff",backgroundColor:"#FF38FF"}}>
               Try again
             </Button>
           </Paper>

@@ -1,5 +1,5 @@
 body{
-	background-color: #191c29;	
+	background: #000;
 }
 @property --rotate {
 	syntax: "<angle>";
@@ -14,7 +14,7 @@ body{
   
   .card {
 	content: "Connect";
-	background-color: #191c29;
+	background-color: #c87fea;
 	/* width: var(--card-width); */
 	/* height: var(--card-height); */
 	padding: 3px;
@@ -25,10 +25,16 @@ body{
 	text-align: center;
 	display: flex;
 	font-size: "20px";
-	color: rgb(88 199 250 / 0%);
+	color: rgba(252, 254, 255, 0);
 	cursor: pointer;
 	font-family: cursive;
+	color: #fff;
+	background: rgba(255, 249, 249, 0.8);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	
   }
+
   
   .card:hover {
 	color: rgb(106, 187, 225);
@@ -48,9 +54,11 @@ body{
   
   .card::before {
 	content: "";
+	background-color: #343a40;
 	width: 104%;
 	height: 102%;
 	border-radius: 8px;
+	color: #fff;
 	background-image: linear-gradient(
 	  var(--rotate)
 	  , #73d0ef, #3c67e3 43%, #4e00c2);
@@ -59,10 +67,15 @@ body{
 	  top: -1%;
 	  left: -2%;
 	  animation: spin 2.5s linear infinite;
+
+	
   }
+
+  
   
   .card::after {
 	position: absolute;
+	background-color: #343a40;
 	content: "";
 	/* top: calc(var(--card-height) / 6); */
 	left: 0;
@@ -90,3 +103,85 @@ body{
 	}
   }
   
+.videoTag{
+	object-fit: cover;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	overflow: hidden;
+	left: 0;
+	z-index: -1;
+}
+
+.game{
+	object-fit: cover;
+	position: fixed;
+	position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:2;
+}
+
+.course{
+	background: rgba(176, 176, 176, 0.25);
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 14.5px );
+	-webkit-backdrop-filter: blur( 14.5px );
+	border-radius: 10px;
+	/* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+}
+
+.course:hover{
+    letter-spacing: 0.25em;
+    background: var(--clr);
+    box-shadow: 0 0 35px var(--clr);
+    color: var(--clr);
+}
+.course::before{
+    content: '';
+    position: absolute;
+    inset: 2px;
+
+}
+.course i::after{
+    content: '';
+    position: absolute;
+    bottom:-3.5px;
+    border: 2px solid var(--clr);
+    transform: translateX(-50%);
+    height: 5px;
+    width: 10px;
+    left: 20%;
+    transition: 0.5s;
+}
+.header{
+	background: rgba(176, 176, 176, 0.25);
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 14.5px );
+	-webkit-backdrop-filter: blur( 14.5px );
+	border-radius: 10px;
+}
+.login{
+	background: rgba(176, 176, 176, 0.25);
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 14.5px );
+	-webkit-backdrop-filter: blur( 14.5px );
+	border-radius: 10px;
+}
+
+.course-vedio{
+	background: rgba(176, 176, 176, 0.25);
+	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+	backdrop-filter: blur( 14.5px );
+	-webkit-backdrop-filter: blur( 14.5px );
+	border-radius: 10px;
+}
+
+.certificate{
+	display: flex;
+	margin:auto;
+	justify-content: center;
+	/* iframes are inline by default */
+    background: #000;
+    border: none;         /* Reset default border */
+    height: 80vh;        /* Viewport-relative units */
+    width: 80vw;
+}
