@@ -24,10 +24,21 @@ import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { ethers } from 'ethers';
 import UserInfoArtifact from './abi/user.json'
 import contractAddress from './instance';
+import { makeStyles } from '@mui/styles';
+
+
+const useStyles = makeStyles({
+  root: {
+
+    color: 'white',
+  },
+});
 
 
 
 export default function Register(props){
+
+  const classes = useStyles()
 
   const [count,setCount] = useState(0) 
 
@@ -45,7 +56,7 @@ export default function Register(props){
 
 
     const formik = useFormik({
-      initialValues: {
+      initialValues: {  
         full_name: '',
         email: '',
         education : '',
@@ -108,6 +119,12 @@ export default function Register(props){
         label: 'College'
       }
     ];
+    const styles = theme => ({
+      multilineColor:{
+          color:'red'
+      }
+  });
+
     
     
     
@@ -134,7 +151,7 @@ export default function Register(props){
 
       <Grid item xs={12} sm={8} md={5} >
       <Container maxWidth="sm">
-         <Card>
+         <Card className="login" sx={{backgroundColor: "transparent"}}>
          <CardContent>
          <form onSubmit={formik.handleSubmit}>
 
@@ -142,20 +159,20 @@ export default function Register(props){
          
             <Box sx={{ my: 5 }}>
               <Typography
-                color="textPrimary"
+                color="#fff"
                 variant="h4"
               >
                 Create a new account
               </Typography>
               <Typography
-                color="textSecondary"
+                color="#fff"
                 gutterBottom
                 variant="body2"
               >
                 Use your email to create a new account
               </Typography>
             </Box>
-            <Divider />
+            <Divider sx={{backgroundColor:"#fff"}} />
        
               
             <TextField
@@ -169,8 +186,13 @@ export default function Register(props){
               onChange={formik.handleChange}
               value={formik.values.full_name}
               variant="outlined"
+              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
+              InputLabelProps={{style : {color : 'white'} }}
+            className={classes.root}
+              
             />
             <TextField
+            className={classes.root}
               error={Boolean(formik.touched.email && formik.errors.email)}
               fullWidth
               helperText={formik.touched.email && formik.errors.email}
@@ -182,6 +204,8 @@ export default function Register(props){
               type="email"
               value={formik.values.email}
               variant="outlined"
+              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
+              InputLabelProps={{style : {color : 'white'} }}
             />
 
             <TextField 
@@ -197,6 +221,10 @@ export default function Register(props){
                 SelectProps={{ native: true }}
                 value={formik.values.education}
                 variant="outlined"
+                sx={{ input: { color: '#fff',backgroundColor:"#fff" },backgroundColor:"transparent",color:"#fff" }}
+                InputLabelProps={{style : {color : 'white'} }}
+                className={classes.root}
+                
               >
                 {education_type.map((option) => (
                   <option
@@ -219,6 +247,8 @@ export default function Register(props){
               onChange={formik.handleChange}
               value={formik.values.instution}
               variant="outlined"
+              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
+              InputLabelProps={{style : {color : 'white'} }}
             />
 
             <TextField
@@ -233,6 +263,8 @@ export default function Register(props){
               type="password"
               value={formik.values.password}
               variant="outlined"
+              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
+              InputLabelProps={{style : {color : 'white'} }}
             />
             <Box
               sx={{
@@ -260,8 +292,10 @@ export default function Register(props){
 
        
             <Typography
-              color="textSecondary"
+              color="#fff"
               variant="body2"
+          
+          
             >
               Have an account?
               {' '}

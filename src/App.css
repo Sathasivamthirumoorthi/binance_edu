@@ -185,3 +185,7 @@ body{
     height: 80vh;        /* Viewport-relative units */
     width: 80vw;
 }
+.text{
+	color: #fff;
+	background-color: #fff;
+}
