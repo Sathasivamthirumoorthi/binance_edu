@@ -13,13 +13,13 @@ import {Card,
     MobileStepper,
     Paper,
     KeyboardArrowRight,
-    KeyboardArrowLeft
+    KeyboardArrowLeft,
+    Stack
 
 } from '@mui/material';
 import CourseVedio from "./CourseVedio"
 import { useTheme } from '@mui/material/styles';
 import { InsertEmoticonSharp } from '@mui/icons-material';
-import Certificate from "./Certificate"
 import Quiz from "./Quiz"
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -30,10 +30,23 @@ import {useLocation} from 'react-router-dom';
 import "./Course.css"
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import {useNavigate} from "react-router-dom"
+import ListItemText from '@mui/material/ListItemText';
+import ListItem from '@mui/material/ListItem';
+import List from '@mui/material/List';
+import Certificate from "./Certificate"
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
+import Nft from './Nft';
 // import { useAddress, useMetamask } from "@thirdweb-dev/react";
 
 
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 // const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad','hello'];
 
@@ -69,6 +82,7 @@ export default function ViewCourse() {
   const [isConnected, setIsConnected] = React.useState(false);
   const [accountAddress, setAccountAddress] = React.useState('');
   const [accountBalance,setAccountBalance] = React.useState(0)
+  const [complete, setComplete] = React.useState(false);
 
   // const [skipped, setSkipped] = React.useState(new Set());
 
@@ -77,6 +91,12 @@ export default function ViewCourse() {
   // const address = useAddress();
 
   // console.log(address)
+
+
+  const handleCloseComplete = () => {
+    setComplete(false);
+  };
+
   
   console.log(location.state)
 
@@ -157,10 +177,7 @@ export default function ViewCourse() {
     
     if(activeStep === steps.length - 1){
       if(verifed){
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
-
-
+        setActiveStep((prevActiveStep) => prevActiveStep + 1); 
         console.log("dsadsadsadsa")
       }
       else{
@@ -189,13 +206,23 @@ export default function ViewCourse() {
     });
   };
 
-  const handleCertificate = () => {
-    navigate("/dashboard/certificate")
+  const handleComplete = () => {
+    // navigate("/dashboard/certificate")
+    setComplete(true);
   };
+
+  const handleCompleteClose = () =>{
+    setComplete(false);
+
+  }
 
   const getVerified = (values) =>{
     console.log(values)
     setVerified(true)
+  }
+
+  const handleDashboard = () =>{
+    navigate("/dashboard") 
   }
 
   return (
@@ -287,7 +314,7 @@ export default function ViewCourse() {
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleCertificate} sx={{color:"#fff",fontWeight:900,letterSpacing:2}}>Certificate</Button>
+            <Button onClick={handleComplete} sx={{color:"#fff",fontWeight:900,letterSpacing:2}}>Complete</Button>
           </Box>
         </React.Fragment>
       ) : (
@@ -311,6 +338,67 @@ export default function ViewCourse() {
     </Box>
     </CardContent>
     </div>
+
+    <Dialog
+        fullScreen
+        open={complete}
+        onClose={handleComplete}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleCompleteClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Congratulation
+            </Typography>
+            <Button autoFocus color="inherit" onClick={handleDashboard}>
+              Go To Dashboard
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <Box sx={{ width: '100%' }}>
+          <Grid
+             spacing={5}
+             direction="row"
+             alignItems="center"
+             justifyContent="center"
+             style={{ minHeight: '100vh' }}
+             item xs={12} sm={12} md={12}>
+            <Grid   container justify="flex-end" xs={12}   alignItems="center"
+             justifyContent="center">
+              <Player
+                        autoplay
+                        loop
+                        src="https://assets10.lottiefiles.com/packages/lf20_gfp4ynnl.json"
+                        style={{ height: '150px', width: '200px'}}>      
+                  </Player>
+              <Typography sx={{ mt: 2, mb: 1,color:"#8F00FF",fontSize:"40px",letterSpacing:2,fontWeight:700 }}>
+                Hurray!,You Did It
+              </Typography>
+                 <Player
+                        autoplay
+                        loop
+                        src="https://assets10.lottiefiles.com/packages/lf20_touohxv0.json"
+                        style={{ height: '150px', width: '200px'}}>      
+                  </Player>
+            </Grid>
+          
+            <Grid   container justify="flex-end" xs={12} sx={{height:"70vh"}} >
+               <Nft/>
+            </Grid>
+            <Grid   container justify="flex-end" xs={12}>
+              <Certificate/>
+            </Grid>
+        </Grid>
+      </Box>
+      </Dialog>
     </Grid>
     
   );

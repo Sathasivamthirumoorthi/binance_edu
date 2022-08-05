@@ -47,31 +47,31 @@ export default function DashBoard() {
             queno:"que_1",
             que : "1) Who receive transaction fees as rewards?",
             options : [{que_options1: "Dapps Developer" , selected: false},{que_options2:"Miners", selected: false},{que_options3:"Investers", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Miners"
+            answer : "Miners"
         },
         {
             queno:"que_2",
             que : "2) A blockchain is",
             options : [{que_options1: "A chain of lego blocks" , selected: false},{que_options2:"A database with information on transactions", selected: false},{que_options3:"A National Bank Database", selected: false,},{que_options4:"None of the above", selected: false}],
-            ans : "A database with Information on transactions"
+            answer : "A database with information on transactions"
         },
         {
             queno:"que_3",
             que : "3) Where do bitcoin transaction fees go?",
             options : [{que_options1: "Satoshi Nakamoto" , selected: false},{que_options2:"Back into the blockchain", selected: false},{que_options3:"To the bitcoin miner", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "To the bitcoin miner"
+            answer : "To the bitcoin miner"
         },
         {
             queno:"que_4",
             que : "4) Which of these most closely lines up with the meaning of mining Bitcoin?",
             options : [{que_options1: "Using your computer to verify legitimacy of bitcoin transactions" , selected: false},{que_options2:"Using your computer to discover hidden bitcoin in the blockchain", selected: false},{que_options3:"using your computer to digup blocks of blockchain", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Using your computer to verify legitimacy of bitcoin transactions"
+            answer : "Using your computer to verify legitimacy of bitcoin transactions"
         },
         {
             queno:"que_5",
             que : "5) What is a Miner? ",
             options : [{que_options1: "A type of blockchain" , selected: false},{que_options2:"Computer that validates and process blockchain transactions", selected: false},{que_options3:"An algorithm that predicts the next part of the chain", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Computer that validates and process blockchain transactions"
+            answer : "Computer that validates and process blockchain transactions"
         },
     ]
       
@@ -88,31 +88,31 @@ export default function DashBoard() {
             queno:"que_1",
             que : "1) What is a hashing?",
             options : [{que_options1: "Gas" , selected: false},{que_options2:"Takes an input of any lenght returns a fixed lenght string of numbers and letters", selected: false},{que_options3:"UTXO", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Takes an input of any length and returns a fixed-length string of numbers and letters"
+            answer : "Takes an input of any length and returns a fixed-length string of numbers and letters"
         },
         {
             queno:"que_2",
             que : "2) Which hashing algorithm is used by Bitcoin-Blockchain?",
             options : [{que_options1: "SHA-256" , selected: false},{que_options2:"SHA-224", selected: false},{que_options3:"SHA-384", selected: false,},{que_options4:"None of the above", selected: false}],
-            ans : "SHA-256"
+            answer : "SHA-256"
         },
         {
             queno:"que_3",
             que : "3) The fixed-length output is called a ?",
             options : [{que_options1: "bitcoin" , selected: false},{que_options2:"value", selected: false},{que_options3:"hash", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "hash"
+            answer : "hash"
         },
         {
             queno:"que_4",
             que : "4) A larger hash code cannot be decomposed into independent subcodes.",
             options : [{que_options1: "True" , selected: false},{que_options2:"False", selected: false}],
-            ans : "False"
+            answer : "False"
         },
         {
             queno:"que_5",
             que : "5) A hash function takes an input string with?",
             options : [{que_options1: "numbers" , selected: false},{que_options2:"alphabets", selected: false},{que_options3:"All the above", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "All the above"
+            answer : "All the above"
         },
     ]
 
@@ -129,31 +129,31 @@ export default function DashBoard() {
             queno:"que_1",
             que : "1) In which programming language is Ethereum written?",
             options : [{que_options1: "Python" , selected: false},{que_options2:"solidity", selected: false},{que_options3:"Kotlin", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "solidity"
+            answer : "solidity"
         },
         {
             queno:"que_2",
             que : "2) In which programming language is Smart Contracts written?",
             options : [{que_options1: "Solidity" , selected: false},{que_options2:"C#", selected: false},{que_options3:"Java", selected: false,},{que_options4:"None of the above", selected: false}],
-            ans : "solidity"
+            answer : "solidity"
         },
         {
             queno:"que_3",
             que : "3) Which type of language is solidity?",
             options : [{que_options1: "Scripting language" , selected: false},{que_options2:"procedure oriented laungage", selected: false},{que_options3:"object oriented language", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "object oriented language"
+            answer : "object oriented language"
         },
         {
             queno:"que_4",
             que : "4) Which among the following is true with respect to solidity programming language?",
             options : [{que_options1: "Solidity smart contracts can store more data" , selected: false},{que_options2:"Solidity is a statically typed language", selected: false},{que_options3:"the file extension of solidity files is .sl", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Solidity is a statically typed language"
+            answer : "Solidity is a statically typed language"
         },
         {
             queno:"que_5",
             que : "5) who invented Solidity? ",
             options : [{que_options1: "Gavin Wood" , selected: false},{que_options2:"Dennis M. Ritchie", selected: false},{que_options3:"Guido van Rossum", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Gavin Wood"
+            answer : "Gavin Wood"
         },
     ]
     },
@@ -170,31 +170,31 @@ export default function DashBoard() {
             queno:"que_1",
             que : "1) What is an Ethereum?",
             options : [{que_options1: "Open software platform based upon Blockchain technology" , selected: false},{que_options2:"Private software platform based upon Blockchain technology", selected: false},{que_options3:"Centralized platform", selected: false},{que_options4:"None of the above", selected: false},],
-            ans : " Open software platform based upon Blockchain technology"
+            answer : "Open software platform based upon Blockchain technology"
         },
         {
             queno:"que_2",
             que : "2) Once a smart contract on the Ethereum blockchain is deployed, it can never be changed again.",
             options : [{que_options1: "True" , selected: false},{que_options2:"False", selected: false}],
-            ans : "True"
+            answer : "True"
         },
         {
             queno:"que_3",
             que : "3) Ethereum was developed by",
             options : [{que_options1: "Satoshi Nakamoto" , selected: false},{que_options2:"Vitalik Buterin", selected: false},{que_options3:"Galvin Woods", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Vitalik Buterin"
+            answer : "Vitalik Buterin"
         },
         {
             queno:"que_4",
             que : "4) Ethereum is in the process of moving to which consensus algorithm?",
             options : [{que_options1: "Proof of timestamps" , selected: false},{que_options2:"Proof of Stake", selected: false},{que_options3:"Proof of Work", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Proof of Stake"
+            answer : "Proof of Stake"
         },
         {
             queno:"que_5",
             que : "5) What Is EVM? ",
             options : [{que_options1: "Electronic voting machine" , selected: false},{que_options2:"Evidence-based veterinary medicine", selected: false},{que_options3:"Ethereum Virtual Machine", selected: false},{que_options4:"None of the above", selected: false}],
-            ans : "Ethereum Virtual Machine"
+            answer : "Ethereum Virtual Machine"
         },
     ]
 
@@ -221,11 +221,11 @@ export default function DashBoard() {
         COURSES
     </Typography>
     <Player
-                    autoplay
-                    loop
-                    src="https://assets4.lottiefiles.com/packages/lf20_bqmgf5tx.json"
-                    style={{ height: '150px', width: '200px'}}
-                    >
+          autoplay
+          loop
+          src="https://assets4.lottiefiles.com/packages/lf20_bqmgf5tx.json"
+          style={{ height: '150px', width: '200px'}}
+          >
     </Player>
 
     </Grid>

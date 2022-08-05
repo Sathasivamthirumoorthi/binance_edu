@@ -92,7 +92,7 @@ export default function Quiz(props) {
     const [checked4,setChecked4] = React.useState(false)
     const [ans,setAns] = React.useState("")
     const [count, setCount] = React.useState(0)
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);  
 
     const handleClose = () => {
     
@@ -108,23 +108,38 @@ export default function Quiz(props) {
       setChecked2(false)
       setChecked3(false)
       setChecked4(false)
-      props.questions.map(item =>{ 
-        // if(ans === item.ans){
-        //   console.log("dsad")
-        //   setCount(count + 1)
+
+      const inventory = [
+        {name: 'apples', quantity: 2},
+        {name: 'bananas', quantity: 0},
+        {name: 'cherries', quantity: 5}
+      ];
+      // console.log(props.questions)
+
+      props.questions.find(({ answer }) => {
+        if(ans === answer){
+          console.log("dsadsadsad",answer)
+          setCount(count+1)
+        }
+        setAns("")
+      });
+    
+      // console.log(result)
+      // props.questions.map(item =>{ 
+      //   if(ans === item.ans){
+      //     console.log("dsad")
+      //     setCount(count + 1)
           
-        // }
-        // console.log(item.ans)
-        console.log(item.ans)
+      //   }
+      // })
 
+      console.log("clicked")
 
-      })
-      
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
    
     };
 
-    // console.log("count ------ ",count)
+    console.log("count ------ ",count)
   
     const handleBack = () => {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -145,7 +160,7 @@ export default function Quiz(props) {
       }
       if(count <= props.questions.length){
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setCount(0)
+  
         props.getVerified(true)
       }
     }
