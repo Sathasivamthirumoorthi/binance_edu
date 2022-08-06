@@ -87,7 +87,7 @@ export default function DashBoard() {
             queno:"que_1",
             que : "1) What is a hashing?",
             options : [{que_options1: "Gas" , selected: false},{que_options2:"Takes an input of any lenght returns a fixed lenght string of numbers and letters", selected: false},{que_options3:"UTXO", selected: false},{que_options4:"None of the above", selected: false}],
-            answer : "Takes an input of any length and returns a fixed-length string of numbers and letters"
+            answer : "Takes an input of any lenght returns a fixed lenght string of numbers and letters"
         },
         {
             queno:"que_2",
@@ -134,7 +134,7 @@ export default function DashBoard() {
             queno:"que_2",
             que : "2) In which programming language is Smart Contracts written?",
             options : [{que_options1: "Solidity" , selected: false},{que_options2:"C#", selected: false},{que_options3:"Java", selected: false,},{que_options4:"None of the above", selected: false}],
-            answer : "solidity"
+            answer : "Solidity"
         },
         {
             queno:"que_3",
