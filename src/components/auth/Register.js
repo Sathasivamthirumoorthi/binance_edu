@@ -1,6 +1,9 @@
 import Grid from '@mui/material/Grid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { styled } from '@mui/styles';
+
+
 //firebase
 import React, { useEffect, useState } from "react";
 import {
@@ -22,34 +25,25 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { ethers } from 'ethers';
-import UserInfoArtifact from './abi/user.json'
-import contractAddress from './instance';
 import { makeStyles } from '@mui/styles';
+
+
 
 
 const useStyles = makeStyles({
   root: {
-
-    color: 'white',
+    boxShadow: '1 4px 4px 4px rgba(255, 105, 135, .3)',
+    color: '#000',
+    backgroundColor:"transparent"
   },
 });
 
 
-
 export default function Register(props){
 
-  const classes = useStyles()
+  const classes = useStyles();
 
   const [count,setCount] = useState(0) 
-
-  const contractInstance = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress,UserInfoArtifact.abi,signer);
-
-    contract.register(2,formik.values.full_name,formik.values.email,formik.values.education,formik.values.instution);
-    console.log("Successfully done");
-  }
 
   // contractInstance();
 
@@ -76,31 +70,35 @@ export default function Register(props){
           'Must be a valid email')
         .max(255)
         .required(
-          'Email is required'),
-          education: Yup
+          'Email is required')
+        .matches(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            "Must be a valid email"
+          ),
+
+        education: Yup
           .string()
           .max(255)
           .required(
-            'education is required'),
+            'Education is required'),
         instution: Yup
             .string()
             .max(255)
             .required(
-              'instution is required'),
+              'Instution is required'),
           
         password: Yup
           .string()
           .max(255)
           .required(
-            'Password is required'),
+            'Password is required').matches(
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+              "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+            ),
         }),  
       onSubmit: values => {
         console.log(values)
-        
-        // registerWithEmailAndPassword(values)
-        // register({
-        //   email:'sathasivam@gmail.com',
-        //   password:'Siva@2001'});
+
         props.getRegistrationData(values)
       }
     });
@@ -119,11 +117,6 @@ export default function Register(props){
         label: 'College'
       }
     ];
-    const styles = theme => ({
-      multilineColor:{
-          color:'red'
-      }
-  });
 
     
     
@@ -151,7 +144,7 @@ export default function Register(props){
 
       <Grid item xs={12} sm={8} md={5} >
       <Container maxWidth="sm">
-         <Card className="login" sx={{backgroundColor: "transparent"}}>
+         <Card className="login">
          <CardContent>
          <form onSubmit={formik.handleSubmit}>
 
@@ -159,20 +152,20 @@ export default function Register(props){
          
             <Box sx={{ my: 5 }}>
               <Typography
-                color="#fff"
+                color="#0000FF"
                 variant="h4"
               >
                 Create a new account
               </Typography>
               <Typography
-                color="#fff"
+                color="#FF38FF"
                 gutterBottom
                 variant="body2"
               >
                 Use your email to create a new account
               </Typography>
             </Box>
-            <Divider sx={{backgroundColor:"#fff"}} />
+            <Divider sx={{backgroundColor:"#FF38FF"}} />
        
               
             <TextField
@@ -186,9 +179,8 @@ export default function Register(props){
               onChange={formik.handleChange}
               value={formik.values.full_name}
               variant="outlined"
-              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
-              InputLabelProps={{style : {color : 'white'} }}
-            className={classes.root}
+              InputLabelProps={{style : {color : '#000'} }}
+              className={classes.root}
               
             />
             <TextField
@@ -204,8 +196,8 @@ export default function Register(props){
               type="email"
               value={formik.values.email}
               variant="outlined"
-              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
-              InputLabelProps={{style : {color : 'white'} }}
+              InputLabelProps={{style : {color : '#000'} }}
+
             />
 
             <TextField 
@@ -221,8 +213,7 @@ export default function Register(props){
                 SelectProps={{ native: true }}
                 value={formik.values.education}
                 variant="outlined"
-                sx={{ input: { color: '#fff',backgroundColor:"#fff" },backgroundColor:"transparent",color:"#fff" }}
-                InputLabelProps={{style : {color : 'white'} }}
+                InputLabelProps={{style : {color : '#000'} }}
                 className={classes.root}
                 
               >
@@ -247,8 +238,7 @@ export default function Register(props){
               onChange={formik.handleChange}
               value={formik.values.instution}
               variant="outlined"
-              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
-              InputLabelProps={{style : {color : 'white'} }}
+              InputLabelProps={{style : {color : '#000'} }}
             />
 
             <TextField
@@ -263,8 +253,7 @@ export default function Register(props){
               type="password"
               value={formik.values.password}
               variant="outlined"
-              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
-              InputLabelProps={{style : {color : 'white'} }}
+              InputLabelProps={{style : {color : '#000'} }}
             />
             <Box
               sx={{
@@ -284,15 +273,15 @@ export default function Register(props){
                 size="large"
                 type="submit"
                 variant="contained"
-                onClick={async ()=>{await contractInstance()}}
               >
+              
                 Sign Up Now
               </Button>
             </Box>
 
        
             <Typography
-              color="#fff"
+              color="#000"
               variant="body2"
           
           
@@ -313,9 +302,6 @@ export default function Register(props){
           </CardContent>
           </Card>
          </Container>
-
-
-
       </Grid>
 
       </Grid>

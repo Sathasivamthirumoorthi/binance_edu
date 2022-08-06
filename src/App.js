@@ -36,7 +36,9 @@ import Error from './components/Error';
 import Games from "./components/games/Games"
 import "./App.css"
 import Certificate from "./components/Certificate"
-
+import contractAddress from './components/auth/instance';
+import { ethers } from 'ethers';
+import UserInfoArtifact from './components/auth/abi/user.json'
 
 function App() {
 
@@ -53,6 +55,8 @@ function App() {
   const [user, loading, error] = useAuthState(auth);
   
   const [open, setOpen] = useState(false);
+
+  const [openRegisterAlert,setOpenRegisterAlert] = useState(false)
 
   const particlesInit = async (main) => {
     console.log(main);
@@ -100,20 +104,27 @@ function App() {
 
   const getRegistrationData = (values) =>{
     const auth = getAuth();
-
+    console.log(values)
    const res =  createUserWithEmailAndPassword(auth, values.email, values.password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
     console.log(user.uid)
     const data = () =>{ set(ref(db, `users/${user.uid}`),values,{})}
-          data()
-          navigate("/login")
+    data()
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(contractAddress,UserInfoArtifact.abi,signer);
+
+    contract.register(2,values.full_name,values.email,values.education,values.instution);
+    console.log("Successfully done");
+    navigate("/login")
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    setOpenRegisterAlert(true)
     // ..
   });
    
@@ -122,6 +133,7 @@ function App() {
   const getloginData = (values) =>{
     function onRegister() {
       signInWithEmailAndPassword(auth, values.email, values.password).then((res)=>{
+       
         navigate("/dashboard")
       }).catch((error) =>{
         setOpen(true);
@@ -141,6 +153,9 @@ function App() {
     navigate('/dashboard')
   }
 
+  const handleRegisterAlert = () =>{
+    window.location.reload()
+  }
 
 
   return (
@@ -187,6 +202,27 @@ function App() {
         <DialogActions>
   
           <Button onClick={handleClose} autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={openRegisterAlert}
+        onClose={handleRegisterAlert}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Incorrect Password"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Incorrect password , please call your content provider
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+  
+          <Button onClick={handleRegisterAlert} autoFocus>
             OK
           </Button>
         </DialogActions>

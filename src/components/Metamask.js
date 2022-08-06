@@ -23,15 +23,15 @@ export default function Metamask(props) {
 
   const { ethereum } = window;
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   useEffect(() => {
     const { ethereum } = window;  
     const checkMetamaskAvailability = async () => {
       if (!ethereum) {
-        sethaveMetamask(false);
+        alert("please install metamask")
       }
-      sethaveMetamask(true);
+    
 
   
       
@@ -60,22 +60,12 @@ export default function Metamask(props) {
         if (connected) {
             console.log("connected")
             setIsConnected(true)
-            // metamask is connected
-            props.getConnectedStatus(isConnected);
-           
-            if (props.currentUser) {
-              signOut(auth);
-              console.log(props.currentUser)
-            } else {
-              navigate("/login");
-              
-            }
-      
+            navigate("/login");
+
+
         }else{
           console.log("disconnected")
           setIsConnected(false)
-          props.getConnectedStatus(false);
-          navigate("/");
         }
       });
     
@@ -83,9 +73,8 @@ export default function Metamask(props) {
     checkMetamaskAvailability();
 
   },[]);
-
-  
-
+ 
+ 
   
   const connectWallet = async () => {
     try {
@@ -100,10 +89,10 @@ export default function Metamask(props) {
 
       console.log(accounts[0])
 
-      let balance = await provider.getBalance(accounts[0]);
-      let bal = ethers.utils.formatEther(balance);
+      // let balance = await provider.getBalance(accounts[0]);
+      // let bal = ethers.utils.formatEther(balance);
   
-      setAccountBalance(bal);
+      // setAccountBalance(bal);
       setAccountAddress(accounts[0]);
       setIsConnected(true);
 
@@ -115,6 +104,7 @@ export default function Metamask(props) {
       //   navigate("/");
 
       // }
+        navigate("/login");
       window.location.reload()
     } catch (error) {
       setIsConnected(false);

@@ -72,7 +72,7 @@ export default function Login(props){
 
       <Grid item xs={12} sm={8} md={4} justifyContent="center"  >
          <Container >
-         <Card className="login" sx={{backgroundColor: "transparent"}}>
+         <Card>
          <CardContent style={{color: 'white'}} >
          <form onSubmit={formik.handleSubmit}>
 
@@ -80,13 +80,13 @@ export default function Login(props){
          
             <Box sx={{ my: 5 }} >
               <Typography
-                color="#fff"
+                color="#0000FF"
                 variant="h4"
               >
                 Login 
               </Typography>
               <Typography
-               color="#fff"
+               color="#FF38FF"
                 gutterBottom
                 variant="body2"
               >
@@ -111,8 +111,7 @@ export default function Login(props){
               type="email"
               value={formik.values.email}
               variant="outlined"
-              sx={{ input: { color: '#fff' },backgroundColor:"transparent" }}
-              InputLabelProps={{style : {color : 'white'} }}
+       
             />
 
             <TextField
@@ -127,8 +126,7 @@ export default function Login(props){
               type="password"
               value={formik.values.password}
               variant="outlined"
-              sx={{ input: { color: '#fff' } , }}
-              InputLabelProps={{style : {color : 'white'} }}
+   
             />
             <Box
               sx={{
@@ -155,7 +153,7 @@ export default function Login(props){
 
             </Grid>
             <Typography
-              color="#fff"
+              color="#000"
               variant="body2"
             >
               Don't Have an account?
