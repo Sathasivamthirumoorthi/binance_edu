@@ -5,7 +5,6 @@ import Course from './Course';
 import { Link,useNavigate } from 'react-router-dom';
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import Games from "./games/Games"
-import { InsertEmoticon } from '@material-ui/icons';
 
 
 export default function DashBoard() {
@@ -105,7 +104,7 @@ export default function DashBoard() {
         {
             queno:"que_4",
             que : "4) A larger hash code cannot be decomposed into independent subcodes.",
-            options : [{que_options1: "True" , selected: false},{que_options2:"False", selected: false}],
+            options : [{que_options1: "True" , selected: false},{que_options2:"False", selected: false},{que_options2:"", selected: false},{que_options2:"", selected: false}],
             answer : "False"
         },
         {
@@ -175,7 +174,7 @@ export default function DashBoard() {
         {
             queno:"que_2",
             que : "2) Once a smart contract on the Ethereum blockchain is deployed, it can never be changed again.",
-            options : [{que_options1: "True" , selected: false},{que_options2:"False", selected: false}],
+            options : [{que_options1: "True" , selected: false},{que_options2:"False", selected: false},{que_options2:"", selected: false},{que_options2:"", selected: false}],
             answer : "True"
         },
         {
