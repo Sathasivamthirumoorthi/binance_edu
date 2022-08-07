@@ -27,7 +27,7 @@ export default function DashBoard() {
       name : "BITCOIN SHOPING",
       path :"bitcoinshoping",
       label : "https://assets4.lottiefiles.com/private_files/lf30_vb7v5ca0.json",
-      game : "./games/mining/index.html",
+      game : "https://singular-cannoli-271fba.netlify.app/",
       description : 'Learn the Mining Basics with Anime, Pass the Game, play the Quiz and collect your gifts ( Nft and Certificate) be proud to showcase it',
 
     }
