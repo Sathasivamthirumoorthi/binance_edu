@@ -18,7 +18,7 @@ export default function DashBoard() {
       name : "SHA 256 GENERATOR",
       path :"sha256generator",
       label : "https://assets5.lottiefiles.com/packages/lf20_bmbkcawq.json",
-      game : "https://ipfs.io/ipfs/QmdhFsMZCKYufzEqSARY5KPS5aJS3W9mVDXbf9jvAFNmPi",
+      game : "https://lustrous-cascaron-726691.netlify.app/",
       description : 'Learn the Mining Basics with Anime, Pass the Game, play the Quiz and collect your gifts ( Nft and Certificate) be proud to showcase it',
       
     },
@@ -27,7 +27,7 @@ export default function DashBoard() {
       name : "BITCOIN SHOPING",
       path :"bitcoinshoping",
       label : "https://assets4.lottiefiles.com/private_files/lf30_vb7v5ca0.json",
-      game : "https://ipfs.io/ipfs/QmTH9VDU3CbUUD2C5bnMePQEL3dotxWZQPw7g1fCgXg8TV",
+      game : "./games/mining/index.html",
       description : 'Learn the Mining Basics with Anime, Pass the Game, play the Quiz and collect your gifts ( Nft and Certificate) be proud to showcase it',
 
     }
